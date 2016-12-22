@@ -24,28 +24,9 @@ public class IQ3_UI extends UI
     @Override
     protected void init(VaadinRequest vaadinRequest)
     {
-        final VerticalLayout layout = new VerticalLayout();
-
-        final TextField name = new TextField();
-        name.setCaption("Escriba algo aquí :");
-
-        Button button = new Button("Dime que escribí");
-
-        button.addClickListener(new Button.ClickListener()
-        {
-            @Override
-            public void buttonClick(Button.ClickEvent event)
-            {
-                System.out.println("Click!");
-                layout.addComponent(new Label("Usted escribió -> " + name.getValue()));
-            }
-        });
-
-        layout.addComponents(name, button);
-        layout.setMargin(true);
-        layout.setSpacing(true);
-
-        setContent(layout);
+        PanelPrincipal prin = new PanelPrincipal();
+        prin.setSizeFull();
+        setContent(prin);
     }
 
 }
