@@ -37,7 +37,7 @@ public class IQ3_UI extends UI
             public void buttonClick(Button.ClickEvent event)
             {
                 System.out.println("Click!");
-                layout.addComponent(new Label("Usted escribió> " + name.getValue()));
+                layout.addComponent(new Label("Usted escribió --> " + name.getValue()));
             }
         });
 
