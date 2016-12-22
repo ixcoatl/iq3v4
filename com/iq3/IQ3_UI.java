@@ -27,7 +27,7 @@ public class IQ3_UI extends UI
         final VerticalLayout layout = new VerticalLayout();
 
         final TextField name = new TextField();
-        name.setCaption("Escriba algo aquí:");
+        name.setCaption("Escriba algo aquí :");
 
         Button button = new Button("Dime que escribí");
 
