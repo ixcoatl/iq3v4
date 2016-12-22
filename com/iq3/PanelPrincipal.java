@@ -8,15 +8,21 @@ package com.iq3;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinService;
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -31,6 +37,8 @@ public class PanelPrincipal extends VerticalLayout
     private MenuBar.MenuItem menuAdmin = null;
     private MenuItem menuReportes = null;
     private MenuItem menuTotalesSimples = null;
+    private final TabSheet tabsheet;
+    Map tabs = new HashMap();
 
     public PanelPrincipal()
     {
@@ -43,11 +51,26 @@ public class PanelPrincipal extends VerticalLayout
         this.ponerLogo();
         this.principal.setFirstComponent(panelMenu);
 
+        this.tabsheet = new TabSheet();
+        this.tabsheet.setSizeFull();
+        this.principal.setSecondComponent(tabsheet);
+
         this.menu = new MenuBar();
         this.panelMenu.addComponent(menu);
 
         menuAdministracion();
         menuReportes();
+
+    }
+
+    public void agregarTab(String nombre, AbstractComponent componente)
+    {
+        if (tabs.get(nombre) != null)
+        {
+            return;
+        }
+        tabs.put(nombre, componente);
+        tabsheet.addTab(componente, nombre);
 
     }
 
@@ -57,12 +80,13 @@ public class PanelPrincipal extends VerticalLayout
         {
             this.menuAdmin = this.menu.addItem("Adminstración", null, null);
 
-            this.menuAdmin.addItem("Usuarios administradores", null, new MenuBar.Command()
+            this.menuAdmin.addItem("Administradores del sistema", null, new MenuBar.Command()
                            {
                                @Override
                                public void menuSelected(MenuItem selectedItem)
                                {
-                                   System.out.println("Usuarios administradores");
+                                   System.out.println("Administradores del sistema");
+                                   agregarTab("Administradores", (AbstractComponent) new Panel("Administradores"));
                                }
                            });
 
@@ -72,6 +96,7 @@ public class PanelPrincipal extends VerticalLayout
                                public void menuSelected(MenuItem selectedItem)
                                {
                                    System.out.println("Usuarios del sistema");
+                                   agregarTab("Usuarios", (AbstractComponent) new Panel("Usuarios"));
                                }
                            });
         }
@@ -89,7 +114,7 @@ public class PanelPrincipal extends VerticalLayout
                                         @Override
                                         public void menuSelected(MenuItem selectedItem)
                                         {
-                                            System.out.println("Totales por fecha");
+                                            agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha"));
                                         }
                                     });
         }
@@ -100,14 +125,10 @@ public class PanelPrincipal extends VerticalLayout
         String basepath = VaadinService.getCurrent()
                 .getBaseDirectory().getAbsolutePath();
 
-// Image as a file resource
         FileResource resource = new FileResource(new File(basepath
                                                           + "/img/logo-iq3-40px.png"));
 
-// Show the image in the application
         Image image = new Image(null, resource);
         this.panelMenu.addComponent(image);
-// Let the user view the file in browser or download it
-        //Link link = new Link("Link to the image file", resource);
     }
 }
