@@ -47,4 +47,5 @@ public class IQ3_UI extends UI
 
         setContent(layout);
     }
+
 }
