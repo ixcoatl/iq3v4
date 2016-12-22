@@ -14,7 +14,7 @@ public class ClasePrueba
 
     public void hola()
     {
-        System.out.println("Hola mundo");
+        System.out.println("Hola mundo , como esta?");
     }
 
 }
