@@ -9,6 +9,12 @@ package com.iq3;
  *
  * @author mack
  */
-public class ClasePrueba {
-    
+public class ClasePrueba
+{
+
+    public void hola()
+    {
+
+    }
+
 }
