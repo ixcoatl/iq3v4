@@ -66,18 +66,20 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
         try
         {
             BufferedReader br = new BufferedReader(new StringReader(fos.toString()));
+            int n = 0;
             while ((linea = br.readLine()) != null)
             {
-                System.out.println(linea);
+                //System.out.println(linea);
                 String[] l = linea.split("\t");
                 // Aqui hay que armar el mapa de las tiendas e inyectarlo
                 Map m = new HashMap();
                 m.put("operador", l[0]);
                 m.put("compania", l[1]);
                 m.put("determinante", l[2]);
-
+                n++;
                 //IU7.ds.guardar("iq3_tiendas", m);
             }
+            System.out.println("Leidos bien " + n + " lineas.");
         } catch (Exception e)
         {
             System.err.println("Error: " + e);
