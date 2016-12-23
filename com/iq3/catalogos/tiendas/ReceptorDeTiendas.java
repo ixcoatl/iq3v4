@@ -97,6 +97,7 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
 
                 n++;
             }
+            datastore.put(lista);
             System.out.println("Leidos bien " + n + " lineas.");
         } catch (Exception e)
         {
