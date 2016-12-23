@@ -47,9 +47,12 @@ public class ABCTiendas extends ixABCDialogosGAE
         this.agregarColumna("formato", "Formato").TextField();
         this.agregarColumna("formato_codigo", "Código de formato").TextField();
 
-        this.setFormaCreacion("Vm 'Información~de~Tienda H F id operador determinante formato_codigo formato bCrear .");
-        this.setFormaEdicion("Vm 'Información~de~Tienda H F id operador determinante formato_codigo formato bCrear . bGuardar bBorrar .");
-        this.setFormaBorrado("Hm F Vm H F id operador determinante formato_codigo formato bCrear . bConfBorrar . .");
+        this.setFormaCreacion("Vm 'Información~de~Tienda H F  operador determinante formato_codigo formato bCrear .");
+        this.setFormaEdicion("Vm 'Información~de~Tienda H "
+                             + "F id operador determinante formato_codigo formato . "
+                             + "Fm nombre compania . "
+                             + "F bGuardar bBorrar . ");
+        this.setFormaBorrado("Hm F Vm H F id operador determinante formato_codigo formato nombre bConfBorrar .");
         this.armarTabla();
 
         hacerDialogoSubir();
