@@ -52,7 +52,7 @@ public class ABCTiendas extends ixABCDialogosGAE
                              + "F id operador determinante formato_codigo formato . "
                              + "Fm nombre compania . "
                              + "F bGuardar bBorrar . ");
-        this.setFormaBorrado("Hm F Vm H F id operador determinante formato_codigo formato nombre bConfBorrar .");
+        this.setFormaBorrado(" Vm H F id operador determinante formato_codigo formato nombre bConfBorrar .");
         this.armarTabla();
 
         hacerDialogoSubir();
