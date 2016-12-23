@@ -6,6 +6,9 @@
 package com.iq3.catalogos.tiendas;
 
 import com.coatl.appengine.IU7;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload.Receiver;
@@ -16,7 +19,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,24 +66,36 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
         /*
         * Aqui posiblemente hay que borrar las tiendas anteriores
          */
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         String linea;
 
         try
         {
             BufferedReader br = new BufferedReader(new StringReader(fos.toString()));
             int n = 0;
+            List lista = new ArrayList();
             while ((linea = br.readLine()) != null)
             {
                 //System.out.println(linea);
                 String[] l = linea.split("\t");
                 // Aqui hay que armar el mapa de las tiendas e inyectarlo
-                Map m = new HashMap();
-                m.put("operador", l[0]);
-                m.put("compania", l[1]);
-                m.put("determinante", l[2]);
-                m.put("id", l[0] + "-" + l[2]);
+//                Map m = new HashMap();
+                String id = l[0] + "-" + l[2];
+
+                Entity e = new Entity("iq3_tiendas", id);
+                e.setProperty("id", id);
+                e.setProperty("operador", l[0]);
+                e.setProperty("compania", l[1]);
+                e.setProperty("determinante", l[2]);
+
+                lista.add(e);
+                if (lista.size() > 100)
+                {
+                    datastore.put(lista);
+                    lista = new ArrayList();
+                }
+
                 n++;
-                //IU7.ds.guardar("iq3_tiendas", m);
             }
             System.out.println("Leidos bien " + n + " lineas.");
         } catch (Exception e)
