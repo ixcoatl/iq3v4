@@ -24,7 +24,7 @@ public class IQ3_UI extends UI
     @Override
     protected void init(VaadinRequest vaadinRequest)
     {
-        PanelPrincipal prin = new PanelPrincipal();
+        PanelPrincipal prin = new PanelPrincipal(this);
         prin.setSizeFull();
         setContent(prin);
     }

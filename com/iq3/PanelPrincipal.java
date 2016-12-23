@@ -5,6 +5,9 @@
  */
 package com.iq3;
 
+import com.iq3.admin.ABCUsuariosAdmin;
+import com.iq3.catalogos.tiendas.ABCTiendas;
+import com.iq3.catalogos.ABCUsuarios;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinService;
@@ -39,8 +42,10 @@ public class PanelPrincipal extends VerticalLayout
     private MenuItem menuTotalesSimples = null;
     private final TabSheet tabsheet;
     Map tabs = new HashMap();
+    private final IQ3_UI ui;
+    private MenuItem menuCat;
 
-    public PanelPrincipal()
+    public PanelPrincipal(IQ3_UI ui)
     {
         this.principal = new VerticalSplitPanel();
         this.principal.setSizeFull();
@@ -60,18 +65,29 @@ public class PanelPrincipal extends VerticalLayout
 
         menuAdministracion();
         menuReportes();
-
+        this.ui = ui;
     }
 
     public void agregarTab(String nombre, AbstractComponent componente)
     {
         if (tabs.get(nombre) != null)
         {
-            return;
+            AbstractComponent componenteN = (AbstractComponent) tabs.get(nombre);
+            if (componenteN != null)
+            {
+                TabSheet.Tab rr = tabsheet.getTab(componenteN);
+                if (rr != null)
+                {
+                    rr.setClosable(true);
+                    return;
+                }
+            }
+            tabs.remove(nombre);
         }
         tabs.put(nombre, componente);
         tabsheet.addTab(componente, nombre);
-
+        tabsheet.setSelectedTab(componente);
+        tabsheet.getTab(componente).setClosable(true);
     }
 
     public final void menuAdministracion()
@@ -86,7 +102,11 @@ public class PanelPrincipal extends VerticalLayout
                                public void menuSelected(MenuItem selectedItem)
                                {
                                    System.out.println("Administradores del sistema");
-                                   agregarTab("Administradores", (AbstractComponent) new Panel("Administradores"));
+
+                                   ABCUsuariosAdmin panel = new ABCUsuariosAdmin(ui);
+                                   panel.setSizeFull();
+                                   //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                                   agregarTab("Administradores", panel);
                                }
                            });
 
@@ -96,9 +116,26 @@ public class PanelPrincipal extends VerticalLayout
                                public void menuSelected(MenuItem selectedItem)
                                {
                                    System.out.println("Usuarios del sistema");
-                                   agregarTab("Usuarios", (AbstractComponent) new Panel("Usuarios"));
+                                   ABCUsuarios panel = new ABCUsuarios(ui);
+                                   panel.setSizeFull();
+                                   //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                                   agregarTab("Usuarios", panel);
                                }
                            });
+
+            this.menuCat = this.menuAdmin.addItem("Catálogos", null, null);
+            this.menuCat.addItem("Tiendas", null, new MenuBar.Command()
+                         {
+                             @Override
+                             public void menuSelected(MenuItem selectedItem)
+                             {
+                                 System.out.println("Tiendas");
+                                 ABCTiendas panel = new ABCTiendas(ui);
+                                 panel.setSizeFull();
+                                 //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                                 agregarTab("Tiendas", panel);
+                             }
+                         });
         }
     }
 
@@ -114,7 +151,7 @@ public class PanelPrincipal extends VerticalLayout
                                         @Override
                                         public void menuSelected(MenuItem selectedItem)
                                         {
-                                            agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha"));
+                                            agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha simple"));
                                         }
                                     });
         }
