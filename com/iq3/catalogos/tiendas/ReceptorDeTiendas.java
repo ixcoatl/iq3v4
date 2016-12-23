@@ -76,6 +76,7 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
                 m.put("operador", l[0]);
                 m.put("compania", l[1]);
                 m.put("determinante", l[2]);
+                m.put("id", l[0] + "-" + l[2]);
                 n++;
                 //IU7.ds.guardar("iq3_tiendas", m);
             }
