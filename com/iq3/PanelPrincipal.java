@@ -7,6 +7,7 @@ package com.iq3;
 
 import com.iq3.admin.ABCUsuariosAdmin;
 import com.iq3.catalogos.tiendas.ABCTiendas;
+import com.iq3.catalogos.productos.ABCProductos;
 import com.iq3.catalogos.ABCUsuarios;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Sizeable;
@@ -134,6 +135,19 @@ public class PanelPrincipal extends VerticalLayout
                                  panel.setSizeFull();
                                  //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
                                  agregarTab("Tiendas", panel);
+                             }
+                         });
+            
+            this.menuCat.addItem("Productos", null, new MenuBar.Command()
+                         {
+                             @Override
+                             public void menuSelected(MenuItem selectedItem)
+                             {
+                                 System.out.println("Productos");
+                                 ABCProductos panel = new ABCProductos(ui);
+                                 panel.setSizeFull();
+                                 //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                                 agregarTab("Productos", panel);
                              }
                          });
         }

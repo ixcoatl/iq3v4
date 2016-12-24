@@ -71,13 +71,13 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
 
         try
         {
-            BufferedReader br = new BufferedReader(new StringReader(fos.toString()));
+            BufferedReader br = new BufferedReader(new StringReader(new String(fos.toByteArray(),"UTF8")));
             int n = 0;
             List lista = new ArrayList();
             while ((linea = br.readLine()) != null)
             {
                 //System.out.println(linea);
-                String[] l = linea.split("\t");
+                String[] l = linea.split("\t",-1);
                 // Aqui hay que armar el mapa de las tiendas e inyectarlo
 //                Map m = new HashMap();
                 String id = l[0] + "-" + l[2];
@@ -87,6 +87,48 @@ public class ReceptorDeTiendas implements Receiver, SucceededListener
                 e.setProperty("operador", l[0]);
                 e.setProperty("compania", l[1]);
                 e.setProperty("determinante", l[2]);
+                e.setProperty("nombre", l[3]);
+                e.setProperty("formato", l[4]);
+                e.setProperty("formato_codigo", l[5]);
+                e.setProperty("fecha_apertura", l[6]);
+                e.setProperty("cp", l[7]);
+                e.setProperty("asentamiento", l[8]);
+                e.setProperty("municipio", l[9]);
+                e.setProperty("estado", l[10]);
+                e.setProperty("ciudad", l[11]);
+                e.setProperty("coordenadas_geograficas", l[12]);
+                e.setProperty("zona_nielsen", l[13]);
+                e.setProperty("direccion", l[14]);
+                e.setProperty("telefono", l[15]);
+                e.setProperty("scantrack", l[16]);
+                e.setProperty("colonia", l[17]);
+                e.setProperty("impuesto", l[18]);
+                e.setProperty("operador_determinante", l[19]);
+                e.setProperty("region", l[20]);
+                e.setProperty("territorio", l[21]);
+                e.setProperty("clave_cedis", l[22]);
+                e.setProperty("cedis", l[23]);
+                e.setProperty("nud", l[24]);
+                e.setProperty("nombre_cliente", l[25]);
+                e.setProperty("status", l[26]);
+                e.setProperty("clave_ruta_entrega", l[27]);
+                e.setProperty("team_leader", l[28]);
+                e.setProperty("formato_cliente", l[29]);
+                e.setProperty("fecha_alta", l[30]);
+                e.setProperty("fecha_baja", l[31]);
+                e.setProperty("operador_cliente", l[32]);
+                e.setProperty("cadena_cliente", l[33]);
+                e.setProperty("zona_venta", l[34]);
+                e.setProperty("promotor", l[35]);
+                e.setProperty("agencia", l[36]);
+                e.setProperty("determinante_cliente", l[37]);
+                e.setProperty("supervisor", l[38]);
+                e.setProperty("vendedor", l[39]);
+                e.setProperty("poblacion_base", l[40]);
+                e.setProperty("agencia_1", l[41]);
+                e.setProperty("demostradora", l[42]);
+                
+                
 
                 lista.add(e);
                 if (lista.size() > 100)
