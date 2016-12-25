@@ -6,16 +6,11 @@
 package com.iq3.catalogos.productos;
 
 import com.coatl.vaadin.abc.ixABCDialogosGAE;
+import com.coatl.vaadin.ixUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
-import com.vaadin.ui.Upload.Receiver;
-import com.vaadin.ui.Upload.SucceededListener;
 import com.vaadin.ui.Window;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.util.Map;
 
 /**
@@ -24,13 +19,12 @@ import java.util.Map;
  */
 public class ABCProductos extends ixABCDialogosGAE
 {
-    
-   
+
     private final Button bSubir;
     private Window diaSubir;
     private Upload upload;
 
-    public ABCProductos(UI ui)
+    public ABCProductos(ixUI ui)
     {
         super(ui);
 
@@ -39,7 +33,7 @@ public class ABCProductos extends ixABCDialogosGAE
         this.setColumnasVisibles("id,upc,descripcion,departamento,familia,subfamilia,marca,submarca");
         this.setTitulo("Productos");
 
-       /* this.agregarColumna("id", "ID").TextField().setSoloLecturaGuardar(true);
+        /* this.agregarColumna("id", "ID").TextField().setSoloLecturaGuardar(true);
         this.agregarColumna("upc", "UPC").setSoloLecturaGuardar(true).setRequerido(true).TextField();
         this.agregarColumna("descripcion", "Descripción").TextField();
         this.agregarColumna("departamento", "Departamento").TextField();
@@ -47,50 +41,46 @@ public class ABCProductos extends ixABCDialogosGAE
         this.agregarColumna("subfamilia", "Subfamilia").TextField();
         this.agregarColumna("marca", "Marca").TextField();
         this.agregarColumna("submarca", "Submarca").TextField();*/
-        
-        
         this.agregarColumna("id", "ID").TextField().setSoloLecturaGuardar(true);
-        this.agregarColumna("upc","upc").setSoloLecturaGuardar(true).setRequerido(true).TextField();
-        this.agregarColumna("dun14","dun14").TextField();
-this.agregarColumna("cantidad_empaque","cantidad_empaque").TextField();
-this.agregarColumna("sku_interno","sku_interno").TextField();
-this.agregarColumna("sku_ched","sku_ched").TextField();
-this.agregarColumna("descripcion","descripcion").TextField();
-this.agregarColumna("departamento","departamento").TextField();
-this.agregarColumna("familia","familia").TextField();
-this.agregarColumna("subfamilia","subfamilia").TextField();
-this.agregarColumna("licencia","licencia").TextField();
-this.agregarColumna("marca","marca").TextField();
-this.agregarColumna("submarca","submarca").TextField();
-this.agregarColumna("personaje","personaje").TextField();
-this.agregarColumna("color","color").TextField();
-this.agregarColumna("sabor","sabor").TextField();
-this.agregarColumna("aroma","aroma").TextField();
-this.agregarColumna("activo_suspendido","activo_suspendido").TextField();
-this.agregarColumna("in_out_linea","in_out_linea").TextField();
-this.agregarColumna("alto","alto").TextField();
-this.agregarColumna("ancho","ancho").TextField();
-this.agregarColumna("profundidad","profundidad").TextField();
-this.agregarColumna("peso","peso").TextField();
-this.agregarColumna("presentacion","presentacion").TextField();
-this.agregarColumna("presentacion_ml","presentacion_ml").TextField();
-this.agregarColumna("contenido_neto","contenido_neto").TextField();
-this.agregarColumna("unidades","unidades").TextField();
-this.agregarColumna("franquiciatario","franquiciatario").TextField();
-this.agregarColumna("cavidades","cavidades").TextField();
-this.agregarColumna("factor8oz","factor8oz").TextField();
-this.agregarColumna("factorcl","factorcl").TextField();
-this.agregarColumna("factorcf","factorcf").TextField();
-this.agregarColumna("retornable","retornable").TextField();
-this.agregarColumna("tipo_envase","tipo_envase").TextField();
-this.agregarColumna("tipo_serv","tipo_serv").TextField();
-this.agregarColumna("botellas_caja_fisica","botellas_caja_fisica").TextField();
-this.agregarColumna("tier1","tier1").TextField();
-this.agregarColumna("etapa","etapa").TextField();
-this.agregarColumna("genero","genero").TextField();
-this.agregarColumna("clave_sist","clave_sist").TextField();
-
-      
+        this.agregarColumna("upc", "upc").setSoloLecturaGuardar(true).setRequerido(true).TextField();
+        this.agregarColumna("dun14", "dun14").TextField();
+        this.agregarColumna("cantidad_empaque", "cantidad_empaque").TextField();
+        this.agregarColumna("sku_interno", "sku_interno").TextField();
+        this.agregarColumna("sku_ched", "sku_ched").TextField();
+        this.agregarColumna("descripcion", "descripcion").TextField();
+        this.agregarColumna("departamento", "departamento").TextField();
+        this.agregarColumna("familia", "familia").TextField();
+        this.agregarColumna("subfamilia", "subfamilia").TextField();
+        this.agregarColumna("licencia", "licencia").TextField();
+        this.agregarColumna("marca", "marca").TextField();
+        this.agregarColumna("submarca", "submarca").TextField();
+        this.agregarColumna("personaje", "personaje").TextField();
+        this.agregarColumna("color", "color").TextField();
+        this.agregarColumna("sabor", "sabor").TextField();
+        this.agregarColumna("aroma", "aroma").TextField();
+        this.agregarColumna("activo_suspendido", "activo_suspendido").TextField();
+        this.agregarColumna("in_out_linea", "in_out_linea").TextField();
+        this.agregarColumna("alto", "alto").TextField();
+        this.agregarColumna("ancho", "ancho").TextField();
+        this.agregarColumna("profundidad", "profundidad").TextField();
+        this.agregarColumna("peso", "peso").TextField();
+        this.agregarColumna("presentacion", "presentacion").TextField();
+        this.agregarColumna("presentacion_ml", "presentacion_ml").TextField();
+        this.agregarColumna("contenido_neto", "contenido_neto").TextField();
+        this.agregarColumna("unidades", "unidades").TextField();
+        this.agregarColumna("franquiciatario", "franquiciatario").TextField();
+        this.agregarColumna("cavidades", "cavidades").TextField();
+        this.agregarColumna("factor8oz", "factor8oz").TextField();
+        this.agregarColumna("factorcl", "factorcl").TextField();
+        this.agregarColumna("factorcf", "factorcf").TextField();
+        this.agregarColumna("retornable", "retornable").TextField();
+        this.agregarColumna("tipo_envase", "tipo_envase").TextField();
+        this.agregarColumna("tipo_serv", "tipo_serv").TextField();
+        this.agregarColumna("botellas_caja_fisica", "botellas_caja_fisica").TextField();
+        this.agregarColumna("tier1", "tier1").TextField();
+        this.agregarColumna("etapa", "etapa").TextField();
+        this.agregarColumna("genero", "genero").TextField();
+        this.agregarColumna("clave_sist", "clave_sist").TextField();
 
         this.setFormaCreacion("Vm 'Información~de~Productos H F  upc dun14 cantidad_empaque sku_interno sku_ched descripcion departamento familia subfamilia licencia marca submarca personaje color sabor aroma activo_suspendido  in_out_linea alto ancho profundidad peso presentacion contenido_neto unidades franquiciatario cavidades factor8oz factorcl factorcf retornable tipo_envase tipo_serv botellas_caja_fisica tier1 etapa genero clave_sist bCrear .");
         this.setFormaEdicion("Vm 'Información~de~Tienda H "
@@ -143,8 +133,8 @@ this.agregarColumna("clave_sist","clave_sist").TextField();
     public boolean antesDeCrear(Map m)
     {
         String upc = defFormaCrear.getTextField("upc").getValue().trim();
-       
-        if (upc.equals("") )
+
+        if (upc.equals(""))
         {
             return false;
         }
@@ -167,6 +157,5 @@ this.agregarColumna("clave_sist","clave_sist").TextField();
     {
         this.diaSubir = diaSubir;
     }
-    
 
 }

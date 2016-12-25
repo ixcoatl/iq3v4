@@ -6,7 +6,7 @@
 package com.iq3.admin;
 
 import com.coatl.vaadin.abc.ixABCDialogosGAE;
-import com.vaadin.ui.UI;
+import com.coatl.vaadin.ixUI;
 
 /**
  *
@@ -15,7 +15,7 @@ import com.vaadin.ui.UI;
 public class ABCUsuariosAdmin extends ixABCDialogosGAE
 {
 
-    public ABCUsuariosAdmin(UI ui)
+    public ABCUsuariosAdmin(ixUI ui)
     {
         super(ui);
 
