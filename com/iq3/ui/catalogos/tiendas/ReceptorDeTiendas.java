@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3.catalogos.tiendas;
+package com.iq3.ui.catalogos.tiendas;
 
 import com.coatl.appengine.IU7;
 import com.google.appengine.api.datastore.DatastoreService;

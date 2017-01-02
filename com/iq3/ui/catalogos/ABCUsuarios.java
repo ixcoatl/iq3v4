@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3.admin;
+package com.iq3.ui.catalogos;
 
 import com.coatl.vaadin.abc.ixABCDialogosGAE;
 import com.coatl.vaadin.ixUI;
@@ -12,17 +12,17 @@ import com.coatl.vaadin.ixUI;
  *
  * @author matus
  */
-public class ABCUsuariosAdmin extends ixABCDialogosGAE
+public class ABCUsuarios extends ixABCDialogosGAE
 {
 
-    public ABCUsuariosAdmin(ixUI ui)
+    public ABCUsuarios(ixUI ui)
     {
         super(ui);
 
-        this.setNombreTabla("sis_usuarios");
+        this.setNombreTabla("iq3_usuarios");
         this.setColumnas("id,clave,nombre,ap1,ap2,activo,tel_fijo,tel_celular");
         this.setColumnasVisibles("activo,id,clave,nombre,ap1,ap2,tel_celular");
-        this.setTitulo("Usuarios Administradores");
+        this.setTitulo("Usuarios del Sistema");
 
         this.agregarColumna("id", "Usuario").setRequerido(true).TextField();
         this.agregarColumna("clave", "Clave de acceso").setRequerido(true).TextField();
@@ -35,7 +35,7 @@ public class ABCUsuariosAdmin extends ixABCDialogosGAE
         this.agregarColumna("tel_celular", "Teléfono celular").TextField();
 
         this.setFormaCreacion("Vm 'Información~de~Usuario H F id clave nombre ap1 ap2 bCrear .");
-        this.setFormaEdicion("Vm 'Información~de~Usuario H F id clave nombre ap1 ap2 . Fm tel_fijo tel_celular  activo bGuardar bBorrar .");
+        this.setFormaEdicion("Vm 'Información~de~Usuario H F id clave nombre ap1 ap2 . Fm tel_fijo tel_celular activo bGuardar bBorrar .");
         this.setFormaBorrado("Hm F id nombre ap1 ap2 bConfBorrar . .");
         this.armarTabla();
     }

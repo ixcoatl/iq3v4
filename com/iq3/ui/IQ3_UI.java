@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3;
+package com.iq3.ui;
 
 import com.coatl.vaadin.ixUI;
 import com.vaadin.annotations.Theme;

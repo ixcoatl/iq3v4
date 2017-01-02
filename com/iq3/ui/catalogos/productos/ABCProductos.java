@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3.catalogos.productos;
+package com.iq3.ui.catalogos.productos;
 
 import com.coatl.vaadin.abc.ixABCDialogosGAE;
 import com.coatl.vaadin.ixUI;

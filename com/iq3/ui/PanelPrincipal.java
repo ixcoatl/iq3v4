@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3;
+package com.iq3.ui;
 
-import com.iq3.admin.ABCUsuariosAdmin;
-import com.iq3.catalogos.tiendas.ABCTiendas;
-import com.iq3.catalogos.productos.ABCProductos;
-import com.iq3.catalogos.ABCUsuarios;
+import com.iq3.ui.admin.ABCUsuariosAdmin;
+import com.iq3.ui.catalogos.tiendas.ABCTiendas;
+import com.iq3.ui.catalogos.productos.ABCProductos;
+import com.iq3.ui.catalogos.ABCUsuarios;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinService;
