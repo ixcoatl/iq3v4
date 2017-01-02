@@ -5,6 +5,7 @@
  */
 package com.iq3.ui.util;
 
+import com.coatl.vaadin.ixUI;
 import com.vaadin.ui.Window;
 
 /**
@@ -14,13 +15,13 @@ import com.vaadin.ui.Window;
 public class DiaFiltros extends Window
 {
 
-    public DiaFiltros()
+    public DiaFiltros(ixUI ixUI)
     {
         super("Filtros de reporte");
-        this.setWidth("1000px");
+        this.setWidth("1200px");
         this.setHeight("520px");
 
-        PanelFiltros p = new PanelFiltros();
+        PanelFiltros p = new PanelFiltros(ixUI);
         p.setSizeFull();
         this.setContent(p);
     }
