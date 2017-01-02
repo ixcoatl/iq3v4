@@ -10,6 +10,7 @@ import com.iq3.ui.catalogos.ABCColumnas;
 import com.iq3.ui.catalogos.tiendas.ABCTiendas;
 import com.iq3.ui.catalogos.productos.ABCProductos;
 import com.iq3.ui.catalogos.ABCUsuarios;
+import com.iq3.ui.reportes.totalesporfecha.TotalesPorFechaSimple;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinService;
@@ -178,7 +179,7 @@ public class PanelPrincipal extends VerticalLayout
                 @Override
                 public void menuSelected(MenuItem selectedItem)
                 {
-                    agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha simple"));
+                    agregarTab("Totales por fecha", (AbstractComponent) new TotalesPorFechaSimple(ui));
                 }
             });
         }
