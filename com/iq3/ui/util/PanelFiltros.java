@@ -5,6 +5,7 @@
  */
 package com.iq3.ui.util;
 
+import com.coatl.vaadin.ixUI;
 import com.iq3.ui.util.paneles.PanelFechas;
 import com.iq3.ui.util.paneles.columnas.PanelColumnas;
 import com.vaadin.ui.AbstractComponent;
@@ -28,18 +29,18 @@ public class PanelFiltros extends HorizontalSplitPanel
     Map mPanelesNombre = new HashMap();
     Map mPanelesBoton = new HashMap();
 
-    public PanelFiltros()
+    public PanelFiltros(ixUI ixUI)
     {
         this.setFirstComponent(filtros);
         //filtros.setSizeFull();
         this.setSplitPosition(250, Unit.PIXELS);
-        this.agregar();
+        this.agregar(ixUI);
     }
 
-    public void agregar()
+    public void agregar(ixUI ixUI)
     {
         agregar(filtros, "Fechas", new PanelFechas());
-        agregar(filtros, "Columnas", new PanelColumnas());
+        agregar(filtros, "Columna", new PanelColumnas(ixUI));
 
     }
 

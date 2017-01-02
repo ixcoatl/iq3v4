@@ -26,15 +26,12 @@ public class TotalesPorFechaSimple extends ixABCDialogos
 
         Button cols = new Button("\u2699 Configuración");
         this.getEncabezado().addComponent(cols);
+        df = new DiaFiltros(ui);
         cols.addClickListener(new Button.ClickListener()
         {
             @Override
             public void buttonClick(Button.ClickEvent event)
             {
-                if (df == null)
-                {
-                    df = new DiaFiltros();
-                }
                 getIxUI().addWindow(df);
                 df.center();
             }

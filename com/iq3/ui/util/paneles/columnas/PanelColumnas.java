@@ -5,6 +5,7 @@
  */
 package com.iq3.ui.util.paneles.columnas;
 
+import com.coatl.vaadin.ixUI;
 import com.iq3.ui.util.paneles.PanelFechas;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Button;
@@ -28,14 +29,14 @@ public class PanelColumnas extends HorizontalSplitPanel
 
     VerticalLayout filtros = new VerticalLayout();
 
-    public PanelColumnas()
+    public PanelColumnas(ixUI ixUI)
     {
         this.setSplitPosition(250, Unit.PIXELS);
 
-        agregar(filtros, "Datos", new Panel("Datos"));
-        agregar(filtros, "Tiendas", new Panel("Tiendas"));
-        agregar(filtros, "Productos", new Panel("Productos"));
-        agregar(filtros, "Fechas", new Panel("Fechas"));
+        agregar(filtros, "Datos", new Panel_Columnas(ixUI, "datos"));
+        agregar(filtros, "Tiendas", new Panel_Columnas(ixUI, "tiendas"));
+        agregar(filtros, "Productos", new Panel_Columnas(ixUI, "productos"));
+        agregar(filtros, "Fechas", new Panel_Columnas(ixUI, "fechas"));
 
         this.setFirstComponent(filtros);
     }
@@ -55,14 +56,15 @@ public class PanelColumnas extends HorizontalSplitPanel
             public void buttonClick(Button.ClickEvent event)
             {
                 Button bb = event.getButton();
-                AbstractComponent pb = (AbstractComponent) mPanelesBoton.get(bb);
+                Panel_Columnas pb = (Panel_Columnas) mPanelesBoton.get(bb);
                 fijarComponente(pb);
             }
         });
     }
 
-    public void fijarComponente(AbstractComponent ac)
+    public void fijarComponente(Panel_Columnas ac)
     {
         this.setSecondComponent(ac);
+        ac.armarTabla();
     }
 }

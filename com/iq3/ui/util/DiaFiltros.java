@@ -23,6 +23,7 @@ public class DiaFiltros extends Window
 
         PanelFiltros p = new PanelFiltros(ixUI);
         p.setSizeFull();
+
         this.setContent(p);
     }
 
