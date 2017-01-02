@@ -6,6 +6,7 @@
 package com.iq3.ui;
 
 import com.iq3.ui.admin.ABCUsuariosAdmin;
+import com.iq3.ui.catalogos.ABCColumnas;
 import com.iq3.ui.catalogos.tiendas.ABCTiendas;
 import com.iq3.ui.catalogos.productos.ABCProductos;
 import com.iq3.ui.catalogos.ABCUsuarios;
@@ -50,7 +51,7 @@ public class PanelPrincipal extends VerticalLayout
     {
         this.principal = new VerticalSplitPanel();
         this.principal.setSizeFull();
-        this.principal.setSplitPosition(45, Sizeable.UNITS_PIXELS, false);
+        this.principal.setSplitPosition(45, Sizeable.Unit.PIXELS, false);
         this.addComponent(principal);
 
         this.panelMenu = new HorizontalLayout();
@@ -98,58 +99,70 @@ public class PanelPrincipal extends VerticalLayout
             this.menuAdmin = this.menu.addItem("Adminstración", null, null);
 
             this.menuAdmin.addItem("Administradores del sistema", null, new MenuBar.Command()
-                           {
-                               @Override
-                               public void menuSelected(MenuItem selectedItem)
-                               {
-                                   System.out.println("Administradores del sistema");
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    System.out.println("Administradores del sistema");
 
-                                   ABCUsuariosAdmin panel = new ABCUsuariosAdmin(ui);
-                                   panel.setSizeFull();
-                                   //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
-                                   agregarTab("Administradores", panel);
-                               }
-                           });
+                    ABCUsuariosAdmin panel = new ABCUsuariosAdmin(ui);
+                    panel.setSizeFull();
+                    //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                    agregarTab("Administradores", panel);
+                }
+            });
 
             this.menuAdmin.addItem("Usuarios del sistema", null, new MenuBar.Command()
-                           {
-                               @Override
-                               public void menuSelected(MenuItem selectedItem)
-                               {
-                                   System.out.println("Usuarios del sistema");
-                                   ABCUsuarios panel = new ABCUsuarios(ui);
-                                   panel.setSizeFull();
-                                   //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
-                                   agregarTab("Usuarios", panel);
-                               }
-                           });
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    System.out.println("Usuarios del sistema");
+                    ABCUsuarios panel = new ABCUsuarios(ui);
+                    panel.setSizeFull();
+                    //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                    agregarTab("Usuarios", panel);
+                }
+            });
 
             this.menuCat = this.menuAdmin.addItem("Catálogos", null, null);
+            this.menuCat.addItem("Columnas", null, new MenuBar.Command()
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    System.out.println("Columnas");
+                    ABCColumnas panel = new ABCColumnas(ui);
+                    panel.setSizeFull();
+                    //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                    agregarTab("Columnas", panel);
+                }
+            });
             this.menuCat.addItem("Tiendas", null, new MenuBar.Command()
-                         {
-                             @Override
-                             public void menuSelected(MenuItem selectedItem)
-                             {
-                                 System.out.println("Tiendas");
-                                 ABCTiendas panel = new ABCTiendas(ui);
-                                 panel.setSizeFull();
-                                 //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
-                                 agregarTab("Tiendas", panel);
-                             }
-                         });
-            
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    System.out.println("Tiendas");
+                    ABCTiendas panel = new ABCTiendas(ui);
+                    panel.setSizeFull();
+                    //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                    agregarTab("Tiendas", panel);
+                }
+            });
+
             this.menuCat.addItem("Productos", null, new MenuBar.Command()
-                         {
-                             @Override
-                             public void menuSelected(MenuItem selectedItem)
-                             {
-                                 System.out.println("Productos");
-                                 ABCProductos panel = new ABCProductos(ui);
-                                 panel.setSizeFull();
-                                 //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
-                                 agregarTab("Productos", panel);
-                             }
-                         });
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    System.out.println("Productos");
+                    ABCProductos panel = new ABCProductos(ui);
+                    panel.setSizeFull();
+                    //agregarTab("Administradores", (AbstractComponent) new Panel("Administradores del sistema"));
+                    agregarTab("Productos", panel);
+                }
+            });
         }
     }
 
@@ -161,13 +174,13 @@ public class PanelPrincipal extends VerticalLayout
             this.menuTotalesSimples = this.menuReportes.addItem("Totales simples", null, null);
 
             this.menuTotalesSimples.addItem("Totales por fecha", null, new MenuBar.Command()
-                                    {
-                                        @Override
-                                        public void menuSelected(MenuItem selectedItem)
-                                        {
-                                            agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha simple"));
-                                        }
-                                    });
+            {
+                @Override
+                public void menuSelected(MenuItem selectedItem)
+                {
+                    agregarTab("Totales por fecha", (AbstractComponent) new Panel("Totales por fecha simple"));
+                }
+            });
         }
     }
 
