@@ -5,66 +5,48 @@
  */
 package com.iq3.ui.util.paneles.columnas;
 
-import com.coatl.vaadin.ixUI;
-import com.iq3.ui.util.paneles.PanelFechas;
-import com.vaadin.ui.AbstractComponent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
-import java.util.HashMap;
-import java.util.Map;
+import com.coatl.ed.filtros.ixFiltro;
+import com.coatl.vaadin.abc.ixABCDialogosGAE;
 
 /**
  *
  * @author matus
  */
-public class PanelColumnas extends HorizontalSplitPanel
+public class PanelColumnas extends ixABCDialogosGAE
 {
 
-    Map mBotones = new HashMap();
-    Map mPanelesNombre = new HashMap();
-    Map mPanelesBoton = new HashMap();
+    private final String tipoCol;
 
-    VerticalLayout filtros = new VerticalLayout();
-
-    public PanelColumnas(ixUI ixUI)
+    public PanelColumnas(com.coatl.vaadin.ixUI ui, String tipoCol)
     {
-        this.setSplitPosition(250, Unit.PIXELS);
+        super(ui);
+        this.setNombreTabla("iq3_columnas");
+        this.setTipoBusqueda("agrupar");
 
-        agregar(filtros, "Datos", new Panel_Columnas(ixUI, "datos"));
-        agregar(filtros, "Tiendas", new Panel_Columnas(ixUI, "tiendas"));
-        agregar(filtros, "Productos", new Panel_Columnas(ixUI, "productos"));
-        agregar(filtros, "Fechas", new Panel_Columnas(ixUI, "fechas"));
+        this.setColumnas("id,columna");
+        this.setColumnasVisibles("columna");
+        this.setTitulo("Columnas de " + tipoCol);
 
-        this.setFirstComponent(filtros);
+        this.agregarColumna("id", "ID").TextField().setSoloLecturaGuardar(true);
+        this.agregarColumna("columna", "Columna").TextField().setSoloLecturaGuardar(true);
+
+        this.getbCrear().setVisible(false);
+        //this.getEncabezado().removeAllComponents();
+        this.armarTabla();
+
+        this.tipoCol = tipoCol;
     }
 
-    public void agregar(Layout l, String nombre, AbstractComponent panel)
+    @Override
+    public ixFiltro getFiltros()
     {
-        Button b = new Button(nombre);
-        b.setWidth("100%");
-        filtros.addComponent(b);
-        mBotones.put(nombre, b);
-        mPanelesNombre.put(nombre, panel);
-        mPanelesBoton.put(b, panel);
+        ixFiltro f = new ixFiltro();
 
-        b.addClickListener(new Button.ClickListener()
-        {
-            @Override
-            public void buttonClick(Button.ClickEvent event)
-            {
-                Button bb = event.getButton();
-                Panel_Columnas pb = (Panel_Columnas) mPanelesBoton.get(bb);
-                fijarComponente(pb);
-            }
-        });
+        f.iniciarY();
+        f.agregarContieneCadenaIgnCaso("tabla", tipoCol);
+        f.terminarTodo();
+
+        return f;
     }
 
-    public void fijarComponente(Panel_Columnas ac)
-    {
-        this.setSecondComponent(ac);
-        ac.armarTabla();
-    }
 }
