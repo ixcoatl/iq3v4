@@ -33,6 +33,7 @@ public class PanelColumnas extends ixABCDialogosGAE
         this.getbCrear().setVisible(false);
         //this.getEncabezado().removeAllComponents();
         this.armarTabla();
+        this.getbCrear().setVisible(false);
 
         this.tipoCol = tipoCol;
     }
@@ -40,10 +41,13 @@ public class PanelColumnas extends ixABCDialogosGAE
     @Override
     public ixFiltro getFiltros()
     {
-        ixFiltro f = new ixFiltro();
+        //ixFiltro f = new ixFiltro();
+        ixFiltro f = super.getFiltros();
 
-        f.iniciarY();
-        f.agregarContieneCadenaIgnCaso("tabla", tipoCol);
+        f.getp f
+        .iniciarY();
+        f.agregarCoincideCadenaIgnCaso("tabla", tipoCol);
+        f.agregarCoincideBooleano("seleccionable", true);
         f.terminarTodo();
 
         return f;

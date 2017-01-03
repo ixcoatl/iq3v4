@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iq3.ui.util;
+package com.iq3.ui.util.paneles.columnas;
 
 import com.coatl.vaadin.ixUI;
 import com.iq3.ui.util.paneles.PanelFechas;
-import com.iq3.ui.util.paneles.columnas.PanelColumnasSeleccionables;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalSplitPanel;
@@ -21,27 +20,25 @@ import java.util.Map;
  *
  * @author matus
  */
-public class PanelFiltros extends HorizontalSplitPanel
+public class PanelColumnasSeleccionables extends HorizontalSplitPanel
 {
 
-    VerticalLayout filtros = new VerticalLayout();
     Map mBotones = new HashMap();
     Map mPanelesNombre = new HashMap();
     Map mPanelesBoton = new HashMap();
 
-    public PanelFiltros(ixUI ixUI)
+    VerticalLayout filtros = new VerticalLayout();
+
+    public PanelColumnasSeleccionables(ixUI ixUI)
     {
-        this.setFirstComponent(filtros);
-        //filtros.setSizeFull();
         this.setSplitPosition(250, Unit.PIXELS);
-        this.agregar(ixUI);
-    }
 
-    public void agregar(ixUI ixUI)
-    {
-        agregar(filtros, "Fechas", new PanelFechas());
-        agregar(filtros, "Columna", new PanelColumnasSeleccionables(ixUI));
+        agregar(filtros, "Datos", new PanelColumnas(ixUI, "datos"));
+        agregar(filtros, "Tiendas", new PanelColumnas(ixUI, "tiendas"));
+        agregar(filtros, "Productos", new PanelColumnas(ixUI, "productos"));
+        agregar(filtros, "Fechas", new PanelColumnas(ixUI, "fechas"));
 
+        this.setFirstComponent(filtros);
     }
 
     public void agregar(Layout l, String nombre, AbstractComponent panel)
@@ -59,14 +56,15 @@ public class PanelFiltros extends HorizontalSplitPanel
             public void buttonClick(Button.ClickEvent event)
             {
                 Button bb = event.getButton();
-                AbstractComponent pb = (AbstractComponent) mPanelesBoton.get(bb);
+                PanelColumnas pb = (PanelColumnas) mPanelesBoton.get(bb);
                 fijarComponente(pb);
             }
         });
     }
 
-    public void fijarComponente(AbstractComponent ac)
+    public void fijarComponente(PanelColumnas ac)
     {
         this.setSecondComponent(ac);
+        ac.armarTabla();
     }
 }
